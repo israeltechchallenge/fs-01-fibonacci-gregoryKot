@@ -1,20 +1,16 @@
-fibSequence = [0, 1];
-function fibonacci(index) {
-  if (index < 1) 
-    return index;
-  fibSequence.push(
-    fibSequence[fibSequence.length - 1] + fibSequence[fibSequence.length - 2]
-  );
-
-  if (index > fibSequence.length) fibonacci(index)
-  
-  return fibSequence[index - 1]; 
-}
 let index, number;
-document.querySelector(".btn").addEventListener("click", function () {
-  index = document.querySelector("#index").value;
 
-  number = document.querySelector(".number").innerHTML = fibonacci(index);
+document.querySelector(".btn").addEventListener("click", async function () {
+  index = document.querySelector("#index").value;
+   await fibonacci(index);
+  
 });
 
-console.log(index, number);
+function fibonacci(index) {
+fetch('http://localhost:5050/fibonacci/'+index).then(response => {
+   response.json().then(text => {
+    number = document.querySelector(".number").innerHTML = text.result
+});
+})
+}
+
