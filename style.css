@@ -1,0 +1,11 @@
+.form-control.is-invalid{
+    background-image: none;
+}
+.error50 {
+    background-color: #F2DEDE;
+   width:  180px;
+   font-family: 'Open Sans';
+   font-size: 16px;
+   color: #A94442;
+   margin-left: 3rem;
+}
