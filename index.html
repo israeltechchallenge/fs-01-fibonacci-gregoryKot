@@ -13,7 +13,7 @@
 
 <body>
 
-    <h1 class="align-items-center m-5 display-1 ">Fibonacci Calculator</h1>
+    <h1 class="h1 align-items-center m-5 display-1 ">Fibonacci Calculator</h1>
 
     <form class="d-flex  flex-row m-5 mb-0 align-items-center">
         <div class="p-1 fs4">
@@ -21,18 +21,18 @@
         </div>
 
         <div class="p-1">
-            <input size="2" type="text" placeholder="#" class="p-1 form-control  " id="index">
+            <input size="1" type="number" placeholder="#" class="pt-1 pb-1 form-control  " style="width:100px" id="index">
 
         </div>
 
         <div class="p-1">
-            <button type="button" class="h6 mx-1 btn btn-primary btn-sm">Is</button>
+            <button type="button" class="h6 btn btn-primary ">Is</button>
         </div>
 
-        <div class="p-1">
+        <div class="fs-4 p-1">
             <u class="number">5</u>
-
         </div>
+
 
         <div id="spinner" class=" spinner-border text-dark d-none" role="status">
             <span class="sr-only"></span>
@@ -41,8 +41,11 @@
 
 
     </form>
-    <div class="d-flex m-5 ps-2 p-0 mt-0  flex-row  align-items-center rounded text-danger error50 d-none">
+    <div class="d-flex  rounded text-danger error50 d-none">
         Error
+    </div>
+    <div class="d-flex flex-row align-items-center ms-5 checkbox">
+        <input type="checkbox" id="accept" c> Save Calculation
     </div>
     <div class="d-flex flex-row align-items-center mt-3 mb-5">
         <h2 class="display-3 ms-5 ">Results</h2>
@@ -53,7 +56,7 @@
     <div class="result mt-3 ms-5">
 
         <span class=" fs-5 border-bottom pb-3 border-secondary">
-         
+
         </span>
 
     </div>

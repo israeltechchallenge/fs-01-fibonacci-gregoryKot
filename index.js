@@ -1,16 +1,18 @@
 let index = document.querySelector("#index");
 const number = document.querySelector(".number");
 const error50 = document.querySelector(".error50");
-const spinner = document.getElementById("spinner");
-const spinner2 = document.getElementById("spinner2");
-const errorMessage = document.getElementById("error");
+const spinner = document.querySelector("#spinner");
+const spinner2 = document.querySelector("#spinner2");
+const errorMessage = document.querySelector("#error");
 const results = document.querySelector(".result");
+const check = document.querySelector("#accept");
+console.log(check.checked)
+const button = document.querySelector(".btn");
 //button Listener
-document.querySelector(".btn").addEventListener("click", async function () {
+button.addEventListener("click", async () => {
   number.classList.add("d-none");
   index.classList.remove("is-invalid");
   error50.classList.add("d-none");
-
   errorMessage.innerText = "";
   let input = parseInt(index.value);
   if (!input) {
@@ -21,8 +23,14 @@ document.querySelector(".btn").addEventListener("click", async function () {
     index.classList.add("is-invalid");
     error50.classList.remove("d-none");
     error50.innerHTML = "Can’t be larger than 50";
-  } else await fibonacci(input);
-  getFibonacciResult();
+  } else 
+  if (check.checked) {
+    await fibonacci(input);
+  } else {
+    fibonacciManual(input)
+  }
+    getFibonacciResult();
+
 });
 
 function fibonacci(input) {
@@ -34,7 +42,7 @@ function fibonacci(input) {
         return response.json();
       } else {
         return response.text().then((text) => {
-          throw text;
+          throw new Error(text);
         });
       }
     })
@@ -46,14 +54,13 @@ function fibonacci(input) {
     .catch((error) => {
       spinner.classList.add("d-none");
       errorMessage.classList.remove("d-none");
-      errorMessage.innerHTML = "Server error:";
-      errorMessage.innerText += " " + error;
+      errorMessage.innerText += "Server error:" + error;
     });
 }
 
 function getFibonacciResult() {
   spinner2.classList.remove("d-none");
-  results.innerText =""
+  results.innerText = "";
   fetch("http://localhost:5050/getFibonacciResults ")
     .then((response) => {
       spinner2.classList.add("d-none");
@@ -65,13 +72,28 @@ function getFibonacciResult() {
     });
 }
 function printResults(requestResults) {
-  
   let newResults = requestResults.results;
 
-  for (let i = 0; i<3; i++) {
-    let date = new Date(newResults[i].createdDate)
+  for (let i = 0; i < 10; i++) {
+    let date = new Date(newResults[i].createdDate);
     results.innerHTML += `<div class="result mt-3 mb-4"><span class="fs-5 border-bottom pb-3 border-secondary">The Fibonnaci Of <b>${newResults[i].number}</b> is <b>${newResults[i].result}</b>. Calculated at:${date} </li></div> `;
   }
 }
 
-getFibonacciResult();
+window.addEventListener("load", getFibonacciResult);
+fibSequence = [1, 1];
+
+function fibonacciManual(index) {
+  number.classList.remove("d-none");
+  
+  if (index < 1) 
+    return index;
+  fibSequence.push(
+    fibSequence[fibSequence.length - 1] + fibSequence[fibSequence.length - 2]
+  );
+
+  if (index > fibSequence.length) fibonacciManual(index)
+
+  number.innerHTML = fibSequence[index - 1];
+  
+}

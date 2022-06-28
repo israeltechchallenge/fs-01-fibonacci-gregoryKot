@@ -1,11 +1,36 @@
+body {
+    margin-left: 184px;
+}
 .form-control.is-invalid{
     background-image: none;
 }
 .error50 {
-    background-color: #F2DEDE;
-   width:  180px;
-   font-family: 'Open Sans';
-   font-size: 16px;
-   color: #A94442;
-   margin-left: 3rem;
+   
+        background-color: rgb(233, 199, 199);
+        color: #A94442;
+        margin-left: 3.5vw;
+        /* margin-top: 1vh; */
+        font-size: 16px;
+        border-radius: 4px;
+        padding: 1vh 0;
+        width:  180px;
+        height: 33px;
+        margin-left: 105px;
+        padding: 5px;
+       
+color: #A94442
+        ;
+
+        
+}
+.checkbox {
+    font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 24px;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
