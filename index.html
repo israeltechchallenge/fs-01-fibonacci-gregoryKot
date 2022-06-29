@@ -47,12 +47,21 @@
     <div class="d-flex flex-row align-items-center ms-5 checkbox">
         <input type="checkbox" id="accept" c> Save Calculation
     </div>
-    <div class="d-flex flex-row align-items-center mt-3 mb-5">
+    <div class="d-flex flex-row align-items-center mt-3 mb-2">
         <h2 class="display-3 ms-5 ">Results</h2>
+        
         <div id="spinner2" class="ms-3  d-none spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
+        
     </div>
+    <select class="ms-5 mb-2" name="priority">
+        <option>Choose Priority</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+    </select>
+    
     <div class="result mt-3 ms-5">
 
         <span class=" fs-5 border-bottom pb-3 border-secondary">
