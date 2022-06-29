@@ -96,4 +96,4 @@ function fibonacciManual(index) {
 
   number.innerHTML = fibSequence[index - 1];
   
-}
+me}
