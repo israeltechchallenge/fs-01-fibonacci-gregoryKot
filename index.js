@@ -89,9 +89,4 @@ function fibonacciManual(index) {
   if (index > fibSequence.length) fibonacciManual(index);
 
   number.innerHTML = fibSequence[index - 1];
-<<<<<<< HEAD
-  
-me}
-=======
 }
->>>>>>> milestone6.1
