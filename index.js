@@ -44,7 +44,7 @@ async function fetchedData(url) {
   } catch (error) {
     spinner.classList.add("d-none");
     errorMessage.classList.remove("d-none");
-    errorMessage.innerText += "Server " + error;
+    errorMessage.innerText += "Server Error: " + error;
   }
 }
 
