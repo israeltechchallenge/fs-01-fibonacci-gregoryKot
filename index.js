@@ -6,7 +6,7 @@ const spinner2 = document.querySelector("#spinner2");
 const errorMessage = document.querySelector("#error");
 const results = document.querySelector(".result");
 const check = document.querySelector("#accept");
-console.log(check.checked)
+
 const button = document.querySelector(".btn");
 //button Listener
 button.addEventListener("click", async () => {
@@ -23,53 +23,48 @@ button.addEventListener("click", async () => {
     index.classList.add("is-invalid");
     error50.classList.remove("d-none");
     error50.innerHTML = "Can’t be larger than 50";
-  } else 
-  if (check.checked) {
+  } else if (check.checked) {
     await fibonacci(input);
   } else {
-    fibonacciManual(input)
+    fibonacciManual(input);
   }
-    getFibonacciResult();
-
+  getFibonacciResult();
 });
-
-function fibonacci(input) {
-  spinner.classList.remove("d-none");
-  fetch("http://localhost:5050/fibonacci/" + input)
-    .then((response) => {
-      errorMessage.classList.add("d-none");
-      if (response.ok) {
-        return response.json();
-      } else {
-        return response.text().then((text) => {
-          throw new Error(text);
-        });
-      }
-    })
-    .then((text) => {
-      spinner.classList.add("d-none");
-      number.classList.remove("d-none");
-      number.innerHTML = text.result;
-    })
-    .catch((error) => {
-      spinner.classList.add("d-none");
-      errorMessage.classList.remove("d-none");
-      errorMessage.innerText += "Server error:" + error;
-    });
+async function fetchedData(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      number.classList.add("d-none");
+      throw await response.text();
+    }
+    number.classList.remove("d-none");
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    spinner.classList.add("d-none");
+    errorMessage.classList.remove("d-none");
+    errorMessage.innerText += "Server " + error;
+  }
 }
 
-function getFibonacciResult() {
+async function fibonacci(input) {
+  errorMessage.classList.add("d-none");
+  spinner.classList.remove("d-none");
+
+  const data = await fetchedData(`http://localhost:5050/fibonacci/${input}`);
+
+  spinner.classList.add("d-none");
+
+  number.innerHTML = data.result;
+}
+
+async function getFibonacciResult() {
   spinner2.classList.remove("d-none");
   results.innerText = "";
-  fetch("http://localhost:5050/getFibonacciResults ")
-    .then((response) => {
-      spinner2.classList.add("d-none");
-      return response.json();
-    })
-    .then((text) => {
-      spinner2.classList.add("d-none");
-      printResults(text);
-    });
+  const data = await fetchedData("http://localhost:5050/getFibonacciResults");
+  spinner2.classList.add("d-none");
+  printResults(data);
 }
 function printResults(requestResults) {
   let newResults = requestResults.results;
@@ -85,15 +80,13 @@ fibSequence = [1, 1];
 
 function fibonacciManual(index) {
   number.classList.remove("d-none");
-  
-  if (index < 1) 
-    return index;
+
+  if (index < 1) return index;
   fibSequence.push(
     fibSequence[fibSequence.length - 1] + fibSequence[fibSequence.length - 2]
   );
 
-  if (index > fibSequence.length) fibonacciManual(index)
+  if (index > fibSequence.length) fibonacciManual(index);
 
   number.innerHTML = fibSequence[index - 1];
-  
 }
