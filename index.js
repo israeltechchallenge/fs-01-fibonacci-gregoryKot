@@ -7,11 +7,9 @@ const errorMessage = document.querySelector("#error");
 const results = document.querySelector(".result");
 const check = document.querySelector("#accept");
 const selector = document.querySelector(".mySelect");
-console.log(selector)
 const button = document.querySelector(".btn");
 //button Listener
 button.addEventListener("click", async () => {
-
   number.classList.add("d-none");
   index.classList.remove("is-invalid");
   error50.classList.add("d-none");
@@ -31,7 +29,6 @@ button.addEventListener("click", async () => {
     fibonacciManual(input);
   }
   getFibonacciResult(selector.value);
-
 });
 async function fetchedData(url) {
   try {
@@ -40,8 +37,8 @@ async function fetchedData(url) {
       number.classList.add("d-none");
       throw await response.text();
     }
-    number.classList.remove("d-none");
     const data = await response.json();
+    number.classList.remove("d-none");
     return data;
   } catch (error) {
     spinner.classList.add("d-none");
@@ -83,6 +80,13 @@ window.addEventListener("load", getFibonacciResult);
 fibSequence = [1, 1];
 
 function fibonacciManual(index) {
+  if (index < 1) {
+    number.classList.add("d-none");
+    errorMessage.classList.remove("d-none");
+    errorMessage.innerText = "Error: number can't be smaller than 1";
+  }
+  results.innerText = "";
+  number.innerText = "";
   number.classList.remove("d-none");
 
   if (index < 1) return index;
@@ -100,7 +104,6 @@ selector.addEventListener("change", (event) => {
 });
 
 function sortResult(data, type) {
-
   switch (type) {
     case "numAsc":
       data.sort((a, b) => a.number - b.number);
