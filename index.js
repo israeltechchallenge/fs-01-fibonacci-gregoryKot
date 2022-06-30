@@ -6,10 +6,12 @@ const spinner2 = document.querySelector("#spinner2");
 const errorMessage = document.querySelector("#error");
 const results = document.querySelector(".result");
 const check = document.querySelector("#accept");
-
+const selector = document.querySelector(".mySelect");
+console.log(selector)
 const button = document.querySelector(".btn");
 //button Listener
 button.addEventListener("click", async () => {
+
   number.classList.add("d-none");
   index.classList.remove("is-invalid");
   error50.classList.add("d-none");
@@ -28,7 +30,8 @@ button.addEventListener("click", async () => {
   } else {
     fibonacciManual(input);
   }
-  getFibonacciResult();
+  getFibonacciResult(selector.value);
+
 });
 async function fetchedData(url) {
   try {
@@ -39,7 +42,6 @@ async function fetchedData(url) {
     }
     number.classList.remove("d-none");
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     spinner.classList.add("d-none");
@@ -59,20 +61,22 @@ async function fibonacci(input) {
   number.innerHTML = data.result;
 }
 
-async function getFibonacciResult() {
+async function getFibonacciResult(type) {
   spinner2.classList.remove("d-none");
   results.innerText = "";
   const data = await fetchedData("http://localhost:5050/getFibonacciResults");
   spinner2.classList.add("d-none");
-  printResults(data);
+  sortResult(data.results, type);
+  printResults(data.results);
 }
 function printResults(requestResults) {
-  let newResults = requestResults.results;
+  let newResults = requestResults;
 
   for (let i = 0; i < 10; i++) {
     let date = new Date(newResults[i].createdDate);
-    results.innerHTML += `<div class="result mt-3 mb-4"><span class="fs-5 border-bottom pb-3 border-secondary">The Fibonnaci Of <b>${newResults[i].number}</b> is <b>${newResults[i].result}</b>. Calculated at:${date} </li></div> `;
+    results.innerHTML += `<div class="result mt-3 mb-4"><span class="fs-5 border-bottom pb-3 border-secondary">The Fibonnaci Of <b>${newResults[i].number}</b> is <b>${newResults[i].result}</b>. Calculated at: ${date} </li></div> `;
   }
+  return newResults;
 }
 
 window.addEventListener("load", getFibonacciResult);
@@ -89,4 +93,25 @@ function fibonacciManual(index) {
   if (index > fibSequence.length) fibonacciManual(index);
 
   number.innerHTML = fibSequence[index - 1];
+}
+
+selector.addEventListener("change", (event) => {
+  getFibonacciResult(event.target.value);
+});
+
+function sortResult(data, type) {
+
+  switch (type) {
+    case "numAsc":
+      data.sort((a, b) => a.number - b.number);
+      break;
+    case "numDesc":
+      data.sort((a, b) => b.number - a.number);
+      break;
+    case "dateAsc":
+      data.sort((a, b) => a.createdDate - b.createdDate);
+      break;
+    case "dateDesc":
+      data.sort((a, b) => b.createdDate - a.createdDate);
+  }
 }
