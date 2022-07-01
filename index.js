@@ -91,7 +91,7 @@ function fibonacciManual(index) {
 
   if (index < 1) return index;
   fibSequence.push(
-    fibSequence[fibSequence.length - 1] + fibSequence[fibSequence.length - 2]
+    fibSequence[fibSequence.length - 1] + fibSequence[fibSequence.length - 2],
   );
 
   if (index > fibSequence.length) fibonacciManual(index);
