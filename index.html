@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="./style.css">
     <title>Fibonacci</title>
 </head>
@@ -16,12 +17,13 @@
     <h1 class="h1 align-items-center m-5 display-1 ">Fibonacci Calculator</h1>
 
     <form class="d-flex  flex-row m-5 mb-0 align-items-center">
-        <div class="p-1 fs4">
+        <div class="fibOf p-1 fs4">
             The Fibonnaci Of
         </div>
 
         <div class="p-1">
-            <input size="1" type="number" min="1" max="50" placeholder="#" class="pt-1 pb-1 form-control  " style="width:100px" id="index">
+            <input size="1" type="number" min="1" max="50" placeholder="#" class="pt-1 pb-1 form-control  "
+                style="width:100px" id="index">
 
         </div>
 
@@ -41,29 +43,34 @@
 
 
     </form>
-    <div class="d-flex  rounded text-danger error50 d-none">
+    <div class="d-flex  rounded error50 d-none">
         Error
     </div>
     <div class="d-flex flex-row align-items-center ms-5 checkbox">
-        <input type="checkbox" id="accept" c> Save Calculation
+        <input type="checkbox" id="accept" class="save"> Save Calculation
     </div>
     <div class="d-flex flex-row align-items-center mt-3 mb-2">
         <h2 class="display-3 ms-5 ">Results</h2>
-        
+
         <div id="spinner2" class="ms-3  d-none spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
-        
+
     </div>
-    <select class="ms-5 mb-2 btn btn-secondary btn-sm dropdown-toggle mySelect" name="priority">
+    <select class="ms-5 mb-2 btn btn-grey dropdown-toggle mySelect " name="priority">
+
         <option>Sort by</option>
         <option value="numAsc">Number Asc</option>
+        <div class="dropdown-divider"></div>
         <option value="numDesc">Number Desc</option>
+        <div class="dropdown-divider"></div>
         <option value="dateAsc">Date Asc</option>
+        <div class="dropdown-divider"></div>
         <option value="dateDesc">Date Desc</option>
+        </div>
     </select>
-    
-    <div class="result mt-3 ms-5">
+
+    <div class="result flex-column d-flex mt-3 ms-5">
 
         <span class=" fs-5 border-bottom pb-3 border-secondary">
 

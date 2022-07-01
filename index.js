@@ -71,7 +71,7 @@ function printResults(requestResults) {
 
   for (let i = 0; i < 10; i++) {
     let date = new Date(newResults[i].createdDate);
-    results.innerHTML += `<div class="result mt-3 mb-4"><span class="fs-5 border-bottom pb-3 border-secondary">The Fibonnaci Of <b>${newResults[i].number}</b> is <b>${newResults[i].result}</b>. Calculated at: ${date} </li></div> `;
+    results.innerHTML += `<div class="result d-flex mt-3 mb-4"><span class="fs-5  border-bottom pb-3 border-secondary">The Fibonnaci Of <b>${newResults[i].number}</b> is <b>${newResults[i].result}</b>. Calculated at: ${date} </li></div> `;
   }
   return newResults;
 }
