@@ -1,5 +1,6 @@
 body {
   margin-left: 184px;
+  font-family: "Open Sans", sans-serif;
 }
 .form-control.is-invalid {
   background-image: none;
@@ -38,6 +39,8 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 1008px;
   size: 24px;
 }
-.mySelect {
+.mySelect,
+.mySelect:hover,
+.btn.show {
   background-color: #e6e6e6;
 }
