@@ -1,0 +1,46 @@
+body {
+  margin-left: 184px;
+  font-family: "Open Sans", sans-serif;
+}
+.form-control.is-invalid {
+  background-image: none;
+}
+.error50 {
+  background-color: rgb(233, 199, 199);
+  color: #a94442;
+
+  font-size: 14px;
+  border-radius: 4px;
+  width: 170px;
+  height: 25px;
+  margin-left: 168px;
+  padding: 2px 6px;
+  background-color: #ebcccc;
+}
+.checkbox {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.save {
+  margin: 6px;
+  color: #373a3c;
+}
+.fibOf {
+  font-size: 24px;
+}
+.border-bottom {
+  width: 1008px;
+  size: 24px;
+}
+.mySelect,
+.mySelect:hover,
+.btn.show {
+  background-color: #e6e6e6;
+}
